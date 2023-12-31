@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="../style.css" />
+        <title>Clipboard API</title>
+    </head>
+    <body>
+        <h2>Example</h2>
+        <input id="copyInput" type="text" value="abc123" />
+        <button id="copyBtn">Copy</button>
+
+        <br />
+
+        <input id="pasteInput" type="text" value="" />
+        <button id="pasteBtn">Paste</button>
+
+        <h2>Code</h2>
+
+        <div class="code-snippet">
+            <button class="copySnippet">copy</button>
+            <pre><code class="html javascript" id="copyableSnippet">
+&lt;body&gt;
+    &lt;input id="copyInput" type="text" value="abc123" /&gt;
+    &lt;button id="copyBtn"&gt;Copy&lt;/button&gt;
+
+    &lt;input id="pasteInput" type="text" value="" /&gt;
+    &lt;button id="pasteBtn"&gt;Paste&lt;/button&gt;
+
+    &lt;script&gt;
+        const copyInput = document.getElementById("copyInput");
+        const copyBtn = document.getElementById("copyBtn");
+        const pasteBtn = document.getElementById("pasteBtn");
+        const pasteInput = document.getElementById("pasteInput");
+
+        copyBtn.addEventListener("click", async () =&gt; {
+            const val = copyInput.value;
+            await navigator.clipboard.writeText(val);
+        });
+
+        pasteBtn.addEventListener("click", async () =&gt; {
+            const read = await navigator.clipboard.readText();
+            pasteInput.value = read;
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+    </code></pre>
+        </div>
+
+        <script>
+            const copyInput = document.getElementById("copyInput");
+            const copyBtn = document.getElementById("copyBtn");
+            const pasteBtn = document.getElementById("pasteBtn");
+            const pasteInput = document.getElementById("pasteInput");
+            const copySnippet = document.querySelector(".copySnippet");
+            const snippetItself = document.getElementById("copyableSnippet");
+
+            copyBtn.addEventListener("click", async () => {
+                const val = copyInput.value;
+                await navigator.clipboard.writeText(val);
+            });
+
+            pasteBtn.addEventListener("click", async () => {
+                const read = await navigator.clipboard.readText();
+                pasteInput.value = read;
+            });
+
+            document.addEventListener("DOMContentLoaded", (event) => {
+                document.querySelectorAll("pre code").forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+            });
+
+            copySnippet.addEventListener("click", async () => {
+                await navigator.clipboard.writeText(snippetItself.innerText);
+            });
+        </script>
+    </body>
+</html>

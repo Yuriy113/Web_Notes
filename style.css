@@ -1,0 +1,11 @@
+.code-snippet {
+    position: relative;
+    /* width: 70%; */
+    display: inline-block;
+}
+
+.copySnippet {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
