@@ -2,14 +2,27 @@ body {
     font-family: sans-serif;
 }
 
+button {
+    cursor: pointer;
+}
+
+button[disabled] {
+    cursor: auto;
+}
+
 .code-snippet {
     position: relative;
     /* width: 70%; */
     display: inline-block;
 }
 
-.copySnippet {
+.copySnippetBtn {
     position: absolute;
     right: 20px;
     top: 20px;
+}
+
+button[disabled].success {
+    background-color: #a4eba487;
+    color: #087b04;
 }

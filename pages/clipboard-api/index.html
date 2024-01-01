@@ -9,7 +9,7 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
         />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="../../style.css" />
         <title>Clipboard API</title>
     </head>
     <body>
@@ -25,12 +25,14 @@
 
         <h2>Code</h2>
 
+        <p><button id="loc_btn">Ссылка на страницу</button></p>
+
         <div class="code-snippet">
             <dialog>
                 <button autofocus>❌</button>
                 <p>Текст скопирован в буфер обмена!</p>
             </dialog>
-            <button class="copySnippet">copy</button>
+            <button class="copySnippetBtn">copy</button>
             <pre><code class="html javascript" id="copyableSnippet">
 &lt;body&gt;
     &lt;input id="copyInput" type="text" value="abc123" /&gt;
@@ -65,10 +67,19 @@
             const copyBtn = document.getElementById("copyBtn");
             const pasteBtn = document.getElementById("pasteBtn");
             const pasteInput = document.getElementById("pasteInput");
-            const copySnippet = document.querySelector(".copySnippet");
+            const copySnippetBtn = document.querySelector(".copySnippetBtn");
             const snippetItself = document.getElementById("copyableSnippet");
             const dialog = document.querySelector("dialog");
             const closeDialog = dialog.querySelector("button");
+            const locBtn = document.getElementById("loc_btn");
+
+            locBtn.addEventListener("click", async () => {
+                const val = window.location.href;
+                navigator.clipboard.writeText(val);
+                locBtn.innerText = "Ссылка скопирована в буфер обмена";
+                locBtn.disabled = true;
+                locBtn.classList.add("success");
+            });
 
             copyBtn.addEventListener("click", async () => {
                 const val = copyInput.value;
@@ -86,12 +97,11 @@
                 });
             });
 
-            copySnippet.addEventListener("click", async () => {
+            copySnippetBtn.addEventListener("click", async () => {
                 await navigator.clipboard.writeText(snippetItself.innerText);
-                copySnippet.innerText = "Скопировано!";
-                copySnippet.disabled = true;
-                copySnippet.style.backgroundColor = "#a4eba487";
-                copySnippet.style.color = "#087b04";
+                copySnippetBtn.innerText = "Скопировано!";
+                copySnippetBtn.disabled = true;
+                copySnippetBtn.classList.add("success");
                 dialog.showModal();
             });
 
