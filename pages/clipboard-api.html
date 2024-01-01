@@ -13,6 +13,7 @@
         <title>Clipboard API</title>
     </head>
     <body>
+        <a href="../index.html">На главную</a>
         <h2>Example</h2>
         <input id="copyInput" type="text" value="abc123" />
         <button id="copyBtn">Copy</button>
@@ -25,6 +26,10 @@
         <h2>Code</h2>
 
         <div class="code-snippet">
+            <dialog>
+                <button autofocus>❌</button>
+                <p>Текст скопирован в буфер обмена!</p>
+            </dialog>
             <button class="copySnippet">copy</button>
             <pre><code class="html javascript" id="copyableSnippet">
 &lt;body&gt;
@@ -62,6 +67,8 @@
             const pasteInput = document.getElementById("pasteInput");
             const copySnippet = document.querySelector(".copySnippet");
             const snippetItself = document.getElementById("copyableSnippet");
+            const dialog = document.querySelector("dialog");
+            const closeDialog = dialog.querySelector("button");
 
             copyBtn.addEventListener("click", async () => {
                 const val = copyInput.value;
@@ -81,6 +88,15 @@
 
             copySnippet.addEventListener("click", async () => {
                 await navigator.clipboard.writeText(snippetItself.innerText);
+                copySnippet.innerText = "Скопировано!";
+                copySnippet.disabled = true;
+                copySnippet.style.backgroundColor = "#a4eba487";
+                copySnippet.style.color = "#087b04";
+                dialog.showModal();
+            });
+
+            closeDialog.addEventListener("click", () => {
+                dialog.close();
             });
         </script>
     </body>
