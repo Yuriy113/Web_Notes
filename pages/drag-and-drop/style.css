@@ -3,6 +3,11 @@
     display: flex;
     gap: 5px;
     margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.origin {
+    width: 400px;
 }
 
 .target__letters,
@@ -17,8 +22,18 @@
 
 .origin__letters {
     background-color: rgb(146, 250, 243);
+    cursor: grab;
 }
 
 .over {
     background-color: rgb(168, 168, 168);
+}
+
+.success {
+    background-color: rgb(155, 255, 78);
+}
+
+.issue {
+    background-color: rgb(235, 10, 10);
+    color: white;
 }
