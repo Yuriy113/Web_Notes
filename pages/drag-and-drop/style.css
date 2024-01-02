@@ -1,0 +1,24 @@
+.target,
+.origin {
+    display: flex;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.target__letters,
+.origin__letters {
+    background-color: rgb(201, 200, 200);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    transition: .5s;
+}
+
+.origin__letters {
+    background-color: rgb(146, 250, 243);
+}
+
+.over {
+    background-color: rgb(168, 168, 168);
+}

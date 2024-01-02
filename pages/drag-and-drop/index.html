@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Drag & Drop</title>
+        <style>
+            .tasks__title {
+                margin: 50px 0 20px 0;
+                text-transform: uppercase;
+            }
+
+            .tasks__list {
+                padding: 0;
+                width: 50%;
+                list-style: none;
+            }
+
+            .tasks__item {
+                transition: background-color 0.5s;
+                margin-bottom: 10px;
+                padding: 5px;
+
+                text-align: center;
+                border: 2px dashed #b2d9d0;
+                border-radius: 10px;
+                cursor: grab;
+                background-color: #dff2ef;
+
+                transition: background-color 0.5s;
+            }
+
+            .tasks__item:last-child {
+                margin-bottom: 0;
+            }
+
+            .selected {
+                opacity: 0.6;
+                cursor: grabbing;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../../index.html">На главную</a>
+        <h2>Drag & Drop</h2>
+
+        <section class="target">
+            <div class="target__letters"></div>
+            <div class="target__letters"></div>
+            <div class="target__letters"></div>
+            <div class="target__letters"></div>
+            <div class="target__letters"></div>
+        </section>
+
+        <section class="origin">
+            <div class="origin__letters">A</div>
+            <div class="origin__letters">B</div>
+            <div class="origin__letters">C</div>
+            <div class="origin__letters">D</div>
+            <div class="origin__letters">E</div>
+            <div class="origin__letters">F</div>
+            <div class="origin__letters">G</div>
+            <div class="origin__letters">H</div>
+            <div class="origin__letters">I</div>
+            <div class="origin__letters">J</div>
+            <div class="origin__letters">K</div>
+            <div class="origin__letters">L</div>
+            <div class="origin__letters">M</div>
+            <div class="origin__letters">N</div>
+            <div class="origin__letters">O</div>
+        </section>
+
+        <script>
+            const targetElement = document.querySelector(".target");
+            const targetLetters = targetElement.querySelectorAll(".target__letters");
+            const originElement = document.querySelector(".origin");
+            const originLetters = originElement.querySelectorAll(".origin__letters");
+
+            for (let letter of originLetters) {
+                letter.draggable = true;
+                letter.addEventListener("dragstart", (e) => {
+                    letter.classList.add("selected");
+                });
+                letter.addEventListener("dragend", (e) => {
+                    letter.classList.remove("selected");
+                });
+            }
+
+            for (let zone of targetLetters) {
+                zone.addEventListener("dragover", (e) => {
+                    zone.classList.add('over')
+                    e.preventDefault();
+                });
+                zone.addEventListener("dragleave", (e) => {
+                    zone.classList.remove('over')
+                });
+                zone.addEventListener("drop", (e) => {
+                    const selected = document.querySelector(".selected");
+                    e.target.appendChild(selected);
+                });
+            }
+        </script>
+    </body>
+</html>
