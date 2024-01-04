@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="../../style.css" />
+
+        <title>IFrame</title>
+    </head>
+    <body>
+        <a href="../../index.html">На главную</a>
+        <h2>IFrame</h2>
+        <form id="form">
+            <input id="input" type="text" />
+            <button type="submit" id="send">Send message to iframe</button>
+        </form>
+        <br />
+        <iframe style="display: block; width: 500px; height: 320px;" src="frame.html"></iframe>
+
+        <div class="code-snippet">
+            <span class="code-snippet__title">index.html</span>
+<pre><code class="html javascript">
+&lt;script&gt;
+const myframe = document.querySelector("iframe");
+const form = document.getElementById("form");
+const input = document.getElementById("input");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    myframe.contentWindow.postMessage(input.value, "*");
+});
+
+window.addEventListener("message", (e) => {
+    if (e.data.source !== "react-devtools-content-script") {
+        input.value = e.data;
+    }
+});
+&lt;/script&gt;
+</code></pre>
+        </div>
+
+        <script>
+            const myframe = document.querySelector("iframe");
+            const form = document.getElementById("form");
+            const input = document.getElementById("input");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                myframe.contentWindow.postMessage(input.value, "*");
+            });
+
+            window.addEventListener("message", (e) => {
+                if (e.data.source !== "react-devtools-content-script") {
+                    input.value = e.data;
+                }
+            });
+
+            document.addEventListener("DOMContentLoaded", (event) => {
+                document.querySelectorAll("pre code").forEach((block) => {
+                    hljs.highlightBlock(block);
+                });
+            });
+        </script>
+    </body>
+</html>

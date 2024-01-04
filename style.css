@@ -16,6 +16,16 @@ button[disabled] {
     display: inline-block;
 }
 
+.code-snippet__title {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    background-color: black;
+    color: white;
+    padding: 2px 10px;
+    font-size: 10px;
+}
+
 .copySnippetBtn {
     position: absolute;
     right: 20px;

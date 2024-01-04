@@ -1,0 +1,31 @@
+<html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="frame-style.css" />
+    <link rel="stylesheet" href="../../style.css">
+    <body>
+        <input />
+        <button id="btn">Send message outside</button>
+
+<div class="code-snippet">
+    <span class="code-snippet__title">frame.html</span>
+<pre><code class="html javascript">
+&lt;script&gt;
+const target = document.querySelector("input");
+const btn = document.getElementById("btn");
+
+window.addEventListener("message", (e) => {
+    target.value = e.data;
+});
+
+btn.addEventListener("click", (e) => {
+    window.top.postMessage(target.value, "*");
+    // window.parent.postMessage('msg', '*') // то же самое
+});
+&lt;/script&gt;
+</code></pre>
+</div>
+
+        <script src="frame-script.js"></script>
+    </body>
+</html>
