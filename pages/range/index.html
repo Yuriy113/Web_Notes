@@ -4,35 +4,76 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="../../style.css" />
         <title>Document</title>
     </head>
     <body>
+        <a href="../../index.html">На главную</a>
+        <h2>Progress, meter, range</h2>
         <!-- progress -->
         <div class="example-block">
-            <label for="progress">Type: progress</label>
+            <label for="progress">Tag: progress</label>
             <button id="dec">Decrease</button>
-            <progress id="progress" max="100" value="50">abc</progress>
+            <progress id="progress" max="100" value="50"></progress>
             <button id="inc">Increase</button>
+        </div>
+
+        <div class="code-snippet">
+            <pre>
+                <code class="html javascript">
+    &lt;label for=&quot;progress&quot;&gt;Tag: progress&lt;/label&gt;
+    &lt;button id=&quot;dec&quot;&gt;Decrease&lt;/button&gt; 
+    &lt;progress id=&quot;progress&quot; max=&quot;100&quot; value=&quot;50&quot;&gt;&lt;/progress&gt; 
+    &lt;button id=&quot;inc&quot;&gt;Increase&lt;/button&gt; 
+                </code>
+            </pre>
         </div>
 
         <!-- meter -->
         <div class="example-block">
-            <label for="meter">Type: meter</label>
+            <label for="meter">Tag: meter</label>
             <button id="decMeter">Decrease</button>
             <meter id="meter" low="21" high="80" max="100" value="50"></meter>
             <button id="incMeter">Increase</button>
         </div>
 
+        <div class="code-snippet">
+            <pre>
+                <code class="html javascript">
+    &lt;label for="meter"&gt;Tag: meter&lt;/label&gt;
+    &lt;button id="decMeter"&gt;Decrease&lt;/button&gt;
+    &lt;meter id="meter" low="21" high="80" max="100" value="50"&gt;&lt;/meter&gt;
+    &lt;button id="incMeter"&gt;Increase&lt;/button&gt;
+                </code>
+            </pre>
+        </div>
+
         <!-- range -->
         <div class="example-block">
-            <label for="range">Type: range</label>
+            <label for="range">Input type: range</label>
             <button id="decRange">Decrease</button>
             <input type="range" name="range" id="rangeInput" max="100" value="50" />
             <button id="incRange">Increase</button>
             <p>
                 <output class="input-val">50</output>
             </p>
+        </div>
+
+        <div class="code-snippet">
+            <pre>
+                <code class="html javascript">
+    &lt;label for="range"&gt;Input type: range&lt;/label&gt;
+    &lt;button id="decRange"&gt;Decrease&lt;/button&gt;
+    &lt;input type="range" name="range" id="rangeInput" max="100" value="50" /&gt;
+    &lt;button id="incRange"&gt;Increase&lt;/button&gt;
+    &lt;p&gt;&lt;output class="input-val"&gt;50&lt;/output&gt;&lt;/p&gt;
+            </code>
+            </pre>
         </div>
 
         <script src="script.js"></script>

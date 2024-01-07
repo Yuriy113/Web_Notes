@@ -37,3 +37,9 @@ decRange.addEventListener("click", () => {
     range.value = +range.value - 10;
     inputVal.innerText = range.value;
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightBlock(block);
+    });
+});
